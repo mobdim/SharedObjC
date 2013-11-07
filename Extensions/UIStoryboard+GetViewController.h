@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "StoryboardViewControllerIds.h"
+/***
+ typedef NS_ENUM(NSInteger, StoryboardViewControllerIds) {
+    sbViewController = 0,
+ };
+***/
 
 extern NSString *StoryboardIdents[];
 

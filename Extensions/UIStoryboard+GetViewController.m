@@ -8,7 +8,13 @@
 
 #import "UIStoryboard+GetViewController.h"
 #import "NSString+FirstLetter.h"
+
 #import "StoryboardIdents.h"
+/***
+ NSString *StoryboardIdents[] = {
+    @"ViewController",
+ };
+***/
 
 @implementation UIStoryboard (GetViewController)
 
