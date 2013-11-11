@@ -11,4 +11,6 @@
 
 #define GetDelegate(del)   AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate
 
+#define CHECK(val) NSAssert((val), @#val)
+
 #endif
