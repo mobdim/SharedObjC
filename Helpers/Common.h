@@ -11,6 +11,7 @@
 
 #define GetDelegate(del)   AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate
 
-#define CHECK(val) NSAssert((val), @#val)
+#define CHECK(val)              NSAssert((val), @#val)
+#define CHECKCLASS(val, cl)     CHECK([val isKindOfClass:[cl class]])
 
 #endif
