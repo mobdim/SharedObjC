@@ -26,4 +26,12 @@
     return vc;
 }
 
+- (id) getViewControllerByClass:(Class)cl {
+    NSString *svc = NSStringFromClass(cl);
+    
+    id vc = [self instantiateViewControllerWithIdentifier:[svc stringWithLowerFirstLetter]];
+    
+    return vc;
+}
+
 @end

@@ -19,5 +19,6 @@ extern NSString *StoryboardIdents[];
 @interface UIStoryboard (GetViewController)
 
 - (id) getViewControllerBy:(StoryboardViewControllerIds)vcId;
+- (id) getViewControllerByClass:(Class)cl;
 
 @end
