@@ -18,4 +18,10 @@
 #define iPhone568ImageNamed(image)  (isPhone568 ? [NSString stringWithFormat:@"%@-568h.%@", [image stringByDeletingPathExtension], [image pathExtension]] : image)
 #define iPhone568Image(image)       ([UIImage imageNamed:iPhone568ImageNamed(image)])
 
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+
+extern int const ddLogLevel;
+
 #endif
