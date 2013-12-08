@@ -18,6 +18,42 @@
 #define iPhone568ImageNamed(image)  (isPhone568 ? [NSString stringWithFormat:@"%@-568h.%@", [image stringByDeletingPathExtension], [image pathExtension]] : image)
 #define iPhone568Image(image)       ([UIImage imageNamed:iPhone568ImageNamed(image)])
 
+#define __DESCRIPTION_ALL_PROPERTIES                                                                                                \
+                                                                                                                                    \
+- (NSArray *)__allPropertyNames                                                                                                     \
+{                                                                                                                                   \
+    unsigned count;                                                                                                                 \
+    objc_property_t *properties = class_copyPropertyList([self class], &count);                                                     \
+                                                                                                                                    \
+    NSMutableArray *rv = [NSMutableArray array];                                                                                    \
+                                                                                                                                    \
+    unsigned i;                                                                                                                     \
+    for (i = 0; i < count; i++)                                                                                                     \
+    {                                                                                                                               \
+        objc_property_t property = properties[i];                                                                                   \
+        NSString *name = [NSString stringWithUTF8String:property_getName(property)];                                                \
+        [rv addObject:name];                                                                                                        \
+    }                                                                                                                               \
+                                                                                                                                    \
+    free(properties);                                                                                                               \
+                                                                                                                                    \
+    return rv;                                                                                                                      \
+}                                                                                                                                   \
+                                                                                                                                    \
+- (NSString *)description {                                                                                                         \
+    NSMutableString *d = [NSMutableString new];                                                                                     \
+    NSArray *properties = [self __allPropertyNames];                                                                                \
+    for (NSString *property in properties) {                                                                                        \
+        NSString *tab = [@"" stringByPaddingToLength:10 withString:@" " startingAtIndex:0];                                         \
+        NSString *value = [NSString stringWithFormat:@"%@", [self valueForKey:property]];                                           \
+        [d appendFormat:@"\r%@%@ = %@", tab, [property stringByPaddingToLength:20 withString:@" " startingAtIndex:0], value];       \
+    }                                                                                                                               \
+                                                                                                                                    \
+    return [[super description] stringByAppendingString:d];                                                                         \
+}
+
+
+
 // ******* Tests +++
 
 // Macro - Set the flag for block completion
@@ -45,5 +81,9 @@ while(condition) { \
 #import "DDTTYLogger.h"
 
 extern int const ddLogLevel;
+
+// ******* Includes ---
+
+#import <objc/runtime.h>
 
 #endif
