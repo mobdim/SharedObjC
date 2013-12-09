@@ -17,5 +17,12 @@ CGRectGetBottom(CGRect rect)
     return rect.origin.y + rect.size.height;
 }
 
+CG_INLINE CGRect
+CGRectSetOriginY(CGRect rect, CGFloat y)
+{
+    return CGRectMake(rect.origin.x, y, rect.size.width, rect.size.height);
+}
+
+
 
 #endif
