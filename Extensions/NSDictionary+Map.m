@@ -37,15 +37,17 @@
 {
     if (value == [NSNull null]) value = nil;
     
+    NSString *prefixPropertyName = propertyName;
+    
     if (prefix) {
-        propertyName = [prefix stringByAppendingString:propertyName];
+        prefixPropertyName = [prefix stringByAppendingString:propertyName];
     }
     
-    if (NULL == class_getProperty([objMap class], propertyName.UTF8String)) {
-        NSLog(@"***[%@] ignoring property \"%@\", no matching!", NSStringFromClass([objMap class]), propertyName);
+    if (NULL == class_getProperty([objMap class], prefixPropertyName.UTF8String)) {
+        NSLog(@"***[%@] ignoring property \"%@\", no matching!", NSStringFromClass([objMap class]), prefixPropertyName);
     } else {
-        if (class_getProperty([objMap class], propertyName.UTF8String)) {
-            [objMap setValue:[self unserializedRepresentationOfDatabaseValue:value forPropertyNamed:propertyName] forKeyPath:propertyName];
+        if (class_getProperty([objMap class], prefixPropertyName.UTF8String)) {
+            [objMap setValue:[self unserializedRepresentationOfDatabaseValue:value forPropertyNamed:propertyName] forKeyPath:prefixPropertyName];
         }
     }
 }

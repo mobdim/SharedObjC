@@ -2,7 +2,7 @@
 //  NSString+Date.m
 //  ipPort.New
 //
-//  Created by Dmitriy Zadoroghnyy on 14.01.14.
+//  Created by Dmitriy Zadoroghniy on 14.01.14.
 //  Copyright (c) 2014 ipPort. All rights reserved.
 //
 
@@ -10,17 +10,12 @@
 
 @implementation NSString (Date)
 
-- (NSDate *) dateFormat:(NSString *)format {
-    NSTimeZone *currentDateTimeZone = [NSTimeZone defaultTimeZone];
+- (NSDate *)dateFormat:(NSString *)format {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setTimeZone:currentDateTimeZone];
-//	[formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_EN"]];
+    [formatter setTimeZone:[NSTimeZone systemTimeZone]];
+    [formatter setLocale:[NSLocale systemLocale]];
 	[formatter setDateFormat:format];
-    
-    NSDate *result = [formatter dateFromString:self];
-
-	return result;
+	return [formatter dateFromString:self];
 }
-
 
 @end
