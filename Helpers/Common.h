@@ -13,6 +13,24 @@
 
 #define CHECK(val)              NSAssert((val), @#val)
 #define CHECKCLASS(val, cl)     CHECK([val isKindOfClass:[cl class]])
+#define CHECKSAVE(val)          {                                                                        \
+                                    switch (val) {                                                       \
+                                        case FCModelSaveFailed:                                          \
+                                            DDLogError(@"(%d) - FCModelSaveResult Failed!", val);        \
+                                            break;                                                       \
+                                        case FCModelSaveRefused:                                         \
+                                            DDLogError(@"(%d) - FCModelSaveResult Refused!", val);       \
+                                            break;                                                       \
+                                        case FCModelSaveNoChanges:                                       \
+                                            DDLogVerbose(@"(%d) - FCModelSaveResult NoChanges!", val);   \
+                                            break;                                                       \
+                                        case FCModelSaveSucceeded:                                       \
+                                            DDLogVerbose(@"(%d) - FCModelSaveResult Succeeded!", val);   \
+                                            break;                                                       \
+                                        default:                                                         \
+                                        break;                                                           \
+                                    }                                                                    \
+                                }
 
 #define length(x) (sizeof(x) / sizeof(*(x)))
 #define STRINGREF2NSSTRING(ref)     (ref) ? [NSString stringWithFormat:@"%@", (__bridge_transfer NSString*)ref] : @""
