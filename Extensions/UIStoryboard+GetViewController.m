@@ -9,7 +9,7 @@
 #import "UIStoryboard+GetViewController.h"
 #import "NSString+FirstLetter.h"
 
-#import "StoryboardIdents.h"
+//#import "StoryboardIdents.h"
 /***
  NSString *StoryboardIdents[] = {
     @"ViewController",
@@ -18,13 +18,13 @@
 
 @implementation UIStoryboard (GetViewController)
 
-- (id) getViewControllerBy:(StoryboardViewControllerIds)vcId {
-    NSString *svc = StoryboardIdents[vcId];
-    
-    id vc = [self instantiateViewControllerWithIdentifier:[svc stringWithLowerFirstLetter]];
-    
-    return vc;
-}
+//- (id) getViewControllerBy:(StoryboardViewControllerIds)vcId {
+//    NSString *svc = StoryboardIdents[vcId];
+//    
+//    id vc = [self instantiateViewControllerWithIdentifier:[svc stringWithLowerFirstLetter]];
+//    
+//    return vc;
+//}
 
 - (id) getViewControllerByClass:(Class)cl {
     NSString *svc = NSStringFromClass(cl);
