@@ -76,7 +76,7 @@
     phone = [[phone getPhoneString] getString10];
     NSString *abPhone = [[self getPhoneString] getString10];
     
-    DDLogVerbose(@"compared: %@, %@, %d", abPhone, phone, [phone length]);
+//    DDLogVerbose(@"compared: %@, %@, %d", abPhone, phone, [phone length]);
     
     return [abPhone isEqualToString:phone];
 }
