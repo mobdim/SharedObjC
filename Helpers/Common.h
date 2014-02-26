@@ -111,4 +111,6 @@ extern int const ddLogLevel;
 
 #import <objc/runtime.h>
 
+#define kNetworkMaxRequestCount 3
+
 #endif
