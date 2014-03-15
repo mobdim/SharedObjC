@@ -39,6 +39,8 @@
 #define isPhone568                  ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone && [UIScreen mainScreen].bounds.size.height == 568)
 #define iPhone568ImageNamed(image)  (isPhone568 ? [NSString stringWithFormat:@"%@-568h.%@", [image stringByDeletingPathExtension], [image pathExtension]] : image)
 #define iPhone568Image(image)       ([UIImage imageNamed:iPhone568ImageNamed(image)])
+#define iPhone568ImageNamed2x(image)  (isPhone568 ? [NSString stringWithFormat:@"%@-568h@2x.%@", [image stringByDeletingPathExtension], [image pathExtension]] : image)
+#define iPhone568Image2x(image)       ([UIImage imageNamed:iPhone568ImageNamed2x(image)])
 
 #define IS_OS_6_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)
 #define IS_OS_7_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
