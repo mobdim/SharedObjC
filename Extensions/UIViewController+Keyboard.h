@@ -10,4 +10,10 @@
 
 @interface UIViewController (Keyboard)
 
+- (BOOL) isKeyboardShown;
+- (CGRect) keyboardRect;
+
+- (void) keyboardRegisterNotifications;
+- (void) keyboardUnregisterNotifications;
+
 @end

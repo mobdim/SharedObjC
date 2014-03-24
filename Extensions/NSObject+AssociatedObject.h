@@ -10,6 +10,10 @@
 
 @interface NSObject (AssociatedObject)
 
+- (void) setAssociatedObjectCGRectCopy:(CGRect)object forKey:(NSString *)key;
+- (void) setAssociatedObjectCGRectRetain:(CGRect)object forKey:(NSString *)key;
+- (CGRect) associatedOjectCGRectForKey:(NSString *)key;
+
 - (void) setAssociatedObjectBoolCopy:(BOOL)object forKey:(NSString *)key;
 - (void) setAssociatedObjectBoolRetain:(BOOL)object forKey:(NSString *)key;
 - (BOOL) associatedOjectBoolForKey:(NSString *)key;

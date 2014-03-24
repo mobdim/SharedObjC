@@ -7,7 +7,7 @@
 //
 
 #import "NSObject+AssociatedObject.h"
-#import <objc/objc-runtime.h>
+#import <objc/runtime.h>
 
 @implementation NSObject (AssociatedObject)
 
@@ -16,6 +16,11 @@
 - (void) setAssociatedObjectCGRectCopy:(CGRect)object forKey:(NSString *)key {
     NSValue *v = [NSValue valueWithCGRect:object];
     [self setAssociatedObjectCopy:v forKey:key];
+}
+
+- (void) setAssociatedObjectCGRectRetain:(CGRect)object forKey:(NSString *)key {
+    NSValue *v = [NSValue valueWithCGRect:object];
+    [self setAssociatedObjectRetain:v forKey:key];
 }
 
 - (CGRect) associatedOjectCGRectForKey:(NSString *)key {
