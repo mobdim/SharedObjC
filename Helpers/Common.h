@@ -42,6 +42,12 @@
 #define iPhone568ImageNamed2x(image)  (isPhone568 ? [NSString stringWithFormat:@"%@-568h@2x.%@", [image stringByDeletingPathExtension], [image pathExtension]] : image)
 #define iPhone568Image2x(image)       ([UIImage imageNamed:iPhone568ImageNamed2x(image)])
 
+#ifdef UI_USER_INTERFACE_IDIOM()
+#define IS_IPAD() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#else
+#define IS_IPAD() (false)
+#endif
+
 #define IS_OS_6_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)
 #define IS_OS_7_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 
