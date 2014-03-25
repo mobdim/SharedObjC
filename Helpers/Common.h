@@ -79,11 +79,17 @@
     for (NSString *property in properties) {                                                                                        \
         NSString *tab = [@"" stringByPaddingToLength:10 withString:@" " startingAtIndex:0];                                         \
         NSString *value = [NSString stringWithFormat:@"%@", [self valueForKey:property]];                                           \
-        [d appendFormat:@"\r%@%@ = %@", tab, [property stringByPaddingToLength:20 withString:@" " startingAtIndex:0], value];       \
+        [d appendFormat:@"\r%@%@ = %@", tab, [property stringByPaddingToLength:25 withString:@" " startingAtIndex:0], value];       \
     }                                                                                                                               \
                                                                                                                                     \
     return [[super description] stringByAppendingString:d];                                                                         \
+}                                                                                                                                   \
+                                                                                                                                    \
+- (id) valueForUndefinedKey:(NSString *)key {                                                                                       \
+    DDLogError(@"[%@] - valueForUndefinedKey: %@", NSStringFromClass(self.class), key);                                             \
+    return nil;                                                                                                                     \
 }
+
 
 
 
