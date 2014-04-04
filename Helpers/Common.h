@@ -127,4 +127,6 @@ extern int const ddLogLevel;
 
 #define kNetworkMaxRequestCount 3
 
+#define LocalizedString(key) NSLocalizedString(key, nil)
+
 #endif
