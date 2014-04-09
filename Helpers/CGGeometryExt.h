@@ -29,6 +29,12 @@ CGRectSetSizeHeight(CGRect rect, CGFloat height)
     return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, height);
 }
 
+CG_INLINE CGRect
+CGRectSetSizeWidth(CGRect rect, CGFloat width)
+{
+    return CGRectMake(rect.origin.x, rect.origin.y, width, rect.size.height);
+}
+
 
 
 #endif
