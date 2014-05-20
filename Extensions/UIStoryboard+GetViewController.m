@@ -31,6 +31,10 @@
     
     id vc = [self instantiateViewControllerWithIdentifier:[svc stringWithLowerFirstLetter]];
     
+    if (!vc) {
+        vc = [self instantiateViewControllerWithIdentifier:svc];
+    }
+    
     return vc;
 }
 
