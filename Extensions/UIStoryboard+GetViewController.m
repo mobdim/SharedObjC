@@ -29,11 +29,13 @@
 - (id) getViewControllerByClass:(Class)cl {
     NSString *svc = NSStringFromClass(cl);
     
-    id vc = [self instantiateViewControllerWithIdentifier:[svc stringWithLowerFirstLetter]];
+//    id vc = [self instantiateViewControllerWithIdentifier:[svc stringWithLowerFirstLetter]];
+//    
+//    if (!vc) {
+//        vc = [self instantiateViewControllerWithIdentifier:svc];
+//    }
     
-    if (!vc) {
-        vc = [self instantiateViewControllerWithIdentifier:svc];
-    }
+    id vc = [self instantiateViewControllerWithIdentifier:svc];
     
     return vc;
 }
