@@ -33,8 +33,10 @@
     return databaseValue;
 }
 
-- (void)decodeFieldValue:(id)value intoPropertyName:(NSString *)propertyName toMap:(id)objMap withPrefix:(NSString *)prefix
+- (BOOL)decodeFieldValue:(id)value intoPropertyName:(NSString *)propertyName toMap:(id)objMap withPrefix:(NSString *)prefix
 {
+    BOOL result = NO;
+    
     if (value == [NSNull null]) value = nil;
     
     NSString *prefixPropertyName = propertyName;
@@ -44,22 +46,46 @@
     }
     
     if (NULL == class_getProperty([objMap class], prefixPropertyName.UTF8String)) {
-        DDLogError(@"***[%@] ignoring property \"%@\", no matching!", NSStringFromClass([objMap class]), prefixPropertyName);
+        DDLogWarn(@"***[%@] ignoring property \"%@\", no matching!", NSStringFromClass([objMap class]), prefixPropertyName);
     } else {
         if (class_getProperty([objMap class], prefixPropertyName.UTF8String)) {
             [objMap setValue:[self unserializedRepresentationOfDatabaseValue:value forPropertyNamed:propertyName] forKeyPath:prefixPropertyName];
+            result = YES;
         }
     }
+    
+    return result;
 }
 
-- (void) mapTo:(id)objMap {
-    [self mapTo:objMap withPrefix:nil];
+- (BOOL) mapTo:(id)objMap {
+    return [self mapTo:objMap withPrefix:nil];
 }
-- (void) mapTo:(id)objMap withPrefix:(NSString *)prefix {
-    [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [self decodeFieldValue:obj intoPropertyName:key toMap:objMap withPrefix:prefix];
-    }];
+
+- (BOOL) mapTo:(id)objMap withPrefix:(NSString *)prefix {
+    DDLogVerbose(@">>> Map from dictionary to class.");
     
+    __block BOOL finded = NO;
+    
+    do {
+        [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            finded = [self decodeFieldValue:obj intoPropertyName:key toMap:objMap withPrefix:prefix];
+        }];
+        if (finded) break;
+        
+        DDLogVerbose(@"...try lowercase...");
+        [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            finded = [self decodeFieldValue:obj intoPropertyName:[key lowercaseString] toMap:objMap withPrefix:prefix];
+        }];
+        if (finded) break;
+        
+        DDLogVerbose(@"...try uppercase...");
+        [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            finded = [self decodeFieldValue:obj intoPropertyName:[key uppercaseString] toMap:objMap withPrefix:prefix];
+        }];
+    } while (NO);
+    
+    DDLogVerbose(@"<<< Map from dictionary to class.");
+    return finded;
 }
 
 @end

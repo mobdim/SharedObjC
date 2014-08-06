@@ -11,7 +11,7 @@
 
 @interface NSDictionary (Map)
 
-- (void) mapTo:(id)objMap;
-- (void) mapTo:(id)objMap withPrefix:(NSString *)prefix;
+- (BOOL) mapTo:(id)objMap;
+- (BOOL) mapTo:(id)objMap withPrefix:(NSString *)prefix;
 
 @end
