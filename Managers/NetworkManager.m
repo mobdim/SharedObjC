@@ -12,19 +12,27 @@
 @interface NetworkManager ()
 
 @property (assign, nonatomic) ReachabilityStatus networkStatus;
+@property (strong, nonatomic) AFNetworkReachabilityManager *reachabilityManager;
 
 @end
 
 @implementation NetworkManager
 
+- (void)dealloc {
+    [self.reachabilityManager stopMonitoring];
+}
+
 - (instancetype)init {
     self = [super init];
     if (!self) return nil;
     
-    @weakify(self);
-    [[AFHTTPRequestOperationManager manager].networkReachabilityStatusSignal subscribeNext:^(NSNumber *status) {
+    self.reachabilityManager = [AFNetworkReachabilityManager managerForDomain:[self class].domainForReachability];
+    
+    [self.reachabilityManager startMonitoring];
+    
+    @weakify(self)
+    [self.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus networkStatus) {
         @strongify(self);
-        AFNetworkReachabilityStatus networkStatus = [status intValue];
         switch (networkStatus) {
             case AFNetworkReachabilityStatusUnknown:
                 self.networkStatus = ReachabilityStatusUnknown;
@@ -48,13 +56,13 @@
                 DDLogWarn(@"== ReachabilityStatusUnknown");
                 break;
             case ReachabilityStatusNotReachable:
-                DDLogWarn(@"== ReachabilityStatusNotReachable");
+                DDLogInfo(@"== ReachabilityStatusNotReachable");
                 break;
             case ReachabilityStatusReachableViaWWAN:
-                DDLogWarn(@"== ReachabilityStatusReachableViaWWAN");
+                DDLogInfo(@"== ReachabilityStatusReachableViaWWAN");
                 break;
             case ReachabilityStatusReachableViaWiFi:
-                DDLogWarn(@"== ReachabilityStatusReachableViaWiFi");
+                DDLogInfo(@"== ReachabilityStatusReachableViaWiFi");
                 break;
                 
             default:
@@ -64,6 +72,11 @@
 #endif
     
     return self;
+}
+
++ (NSString *)domainForReachability {
+    DDLogError(@"Пустой адрес для проверки статуса сети!!!");
+    return nil;
 }
 
 + (NSString *)webServiceAddress {
