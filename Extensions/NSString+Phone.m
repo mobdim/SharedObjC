@@ -19,7 +19,7 @@
     NSMutableString *number = [[NSMutableString alloc] initWithString:self];
     
     if (self.length > 2) {
-        if ([[self substringToIndex:1] isEqualToString:@"8"]) {
+        if ([self hasPrefix:@"8"]) {
             number = [[NSMutableString alloc] initWithFormat:@"+7%@", [self substringFromIndex:1]];
         }
         [number replaceOccurrencesOfString:@"-" withString:@"" options:0 range:NSMakeRange(0, [number length])];
