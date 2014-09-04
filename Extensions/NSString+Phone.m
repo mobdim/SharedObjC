@@ -34,7 +34,6 @@
 - (BOOL) isEqualPhoneNumber:(NSString *)phoneNumber {
     NSString *t1 = [[self formatCall] removePlus];
     NSString *t2 = [[phoneNumber formatCall] removePlus];
-    
     return [t1 isEqualToString:t2];
 }
 
@@ -79,6 +78,25 @@
 //    DDLogVerbose(@"compared: %@, %@, %d", abPhone, phone, [phone length]);
     
     return [abPhone isEqualToString:phone];
+}
+
++ (BOOL)isPhoneValid:(NSString *)phone {
+    if (!phone) return NO;
+    
+    NSString *phonePattern = @"\\+?[1-9]+[0-9]*";
+    
+    NSRange range = NSMakeRange(0, phone.length);
+    
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:phonePattern options:NSRegularExpressionCaseInsensitive error:&error];
+    NSTextCheckingResult *match = [regex firstMatchInString:phone options:0 range:range];
+    return (match != nil && NSEqualRanges(match.range, range));
+}
+
+- (BOOL)isPhoneValid {
+    NSString *formattedPhone = [self formatCall];
+    
+    return [NSString isPhoneValid:formattedPhone];
 }
 
 @end
