@@ -10,6 +10,10 @@
 
 @implementation NSString (Phone)
 
++ (NSString *)createPhoneNumber:(NSString *)number countyCode:(NSString *)code {
+    return [code stringByAppendingString:[number formatCall]];
+}
+
 - (NSString *) removePlus {
     return [self stringByReplacingOccurrencesOfString:@"+" withString:@""];
 }
@@ -78,6 +82,23 @@
 //    DDLogVerbose(@"compared: %@, %@, %d", abPhone, phone, [phone length]);
     
     return [abPhone isEqualToString:phone];
+}
+
++ (BOOL)isCodeValid:(NSString *)code {
+    if (!code) return NO;
+    
+    NSString *codePattern = @"[0-9]{4}";
+    
+    NSRange range = NSMakeRange(0, code.length);
+    
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:codePattern options:NSRegularExpressionCaseInsensitive error:&error];
+    NSTextCheckingResult *match = [regex firstMatchInString:code options:0 range:range];
+    return (match != nil && NSEqualRanges(match.range, range));
+}
+
+- (BOOL)isCodeValid {
+    return [NSString isCodeValid:self];
 }
 
 + (BOOL)isPhoneValid:(NSString *)phone {
