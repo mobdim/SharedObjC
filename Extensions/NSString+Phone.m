@@ -14,6 +14,12 @@
     return [code stringByAppendingString:[number formatCall]];
 }
 
+- (BOOL)isEqualToPhoneNumber:(NSString *)number countryCode:(NSString *)code {
+    NSString *fullPhoneNumber = [NSString createPhoneNumber:number countyCode:code];
+    
+    return [self isEqualToString:fullPhoneNumber];
+}
+
 - (NSString *) removePlus {
     return [self stringByReplacingOccurrencesOfString:@"+" withString:@""];
 }

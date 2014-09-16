@@ -21,6 +21,16 @@
 + (NSString *)createPhoneNumber:(NSString *)number countyCode:(NSString *)code;
 
 /**
+ *  Сравнение телефонного номера @p self с генерируемым.
+ *
+ *  @param number номер телефона для генерации
+ *  @param code   код страны для генерации
+ *
+ *  @return @p YES, если номера совпадают, в противном случае - @p NO
+ */
+- (BOOL)isEqualToPhoneNumber:(NSString *)number countryCode:(NSString *)code;
+
+/**
  *  Удаление плюса.
  *
  *  @return Возвращается строчка без плюса.
@@ -39,7 +49,7 @@
  *
  *  @param phoneNumber телефонный номер для сравнения
  *
- *  @return YES, если номера совпадают, в противном случае - NO
+ *  @return @p YES, если номера совпадают, в противном случае - @p NO
  */
 - (BOOL)        isEqualPhoneNumber:(NSString *)phoneNumber;
 - (NSString *)  getPhoneString;
