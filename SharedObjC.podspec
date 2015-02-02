@@ -27,7 +27,8 @@ Pod::Spec.new do |s|
   s.subspec 'Helpers' do |hel|
     hel.source_files = 'Helpers/*.{h,m}'
   end
-
+  
+  s.dependency     'CocoaLumberjack'
 
 # Pod Dependencies
 
