@@ -28,6 +28,8 @@ Pod::Spec.new do |s|
     hel.source_files = 'Helpers/*.{h,m}'
   end
   
+  s.osx.exclude_files = 'Managers/NetworkManager.{h,m}'
+  
   s.dependency 'CocoaLumberjack'
   s.dependency 'AFNetworking', '~> 2.5.0'
   s.dependency 'AFNetworking-RACExtensions', '~> 0.1.4'
