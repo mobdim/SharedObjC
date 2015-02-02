@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.summary      = 'Helpers funcs.'
 
 # Source Info
-  s.platform     =  :ios, '7.0'
+#  s.platform     =  :ios, '7.0'
 #  s.public_header_files = 'streamlib/lib/*.h'
 #s.source       =  { :git => 'git@gitlab.mobdim.com:iphone/streamlib.git', :tag => "v#{s.version}" }
   s.source       =  { :git => 'git@github.com:mobdim/SharedObjC.git' }
