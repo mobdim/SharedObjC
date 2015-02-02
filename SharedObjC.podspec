@@ -28,7 +28,9 @@ Pod::Spec.new do |s|
     hel.source_files = 'Helpers/*.{h,m}'
   end
   
-  s.dependency     'CocoaLumberjack'
+  s.dependency 'CocoaLumberjack'
+  s.dependency 'AFNetworking', '~> 2.5.0'
+  s.dependency 'AFNetworking-RACExtensions', '~> 0.1.4'
 
 # Pod Dependencies
 
