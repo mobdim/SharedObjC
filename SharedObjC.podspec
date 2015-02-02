@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
       ext.source_files = 'Extensions/*.{h,mm}'
   end
 
-  s.ios.subspec 'Managers' do |man|
+  s.subspec 'Managers' do |man|
     man.source_files = 'Managers/*.{h,m}'
   end
   
