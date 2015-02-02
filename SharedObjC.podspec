@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
       ext.source_files = 'Extensions/*.{h,mm}'
   end
 
-  s.subspec 'Managers' do |man|
+  s.ios.subspec 'Managers' do |man|
     man.source_files = 'Managers/*.{h,m}'
   end
   
@@ -29,6 +29,7 @@ Pod::Spec.new do |s|
   end
 
   s.osx.deployment_target = '10.9'
+  s.ios.deployment_target = '7.0'
   
   s.osx.exclude_files = 'Managers/NetworkManager.{h,m}'
 # Pod Dependencies
