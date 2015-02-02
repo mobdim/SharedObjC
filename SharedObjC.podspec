@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version      = '0.0.1'
   s.license      = 'MIT'
   s.homepage     = 'https://github.com/mobdim/SharedObjC'
-  s.authors      = 'Dmitry Zadoroghniy' => 'dima@mobdim.com'
+  s.authors      = 'Dmitry Zadoroghniy' # => 'dima@mobdim.com'
   s.summary      = 'Helpers funcs.'
 
 # Source Info
