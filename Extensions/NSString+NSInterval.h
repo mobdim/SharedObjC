@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (Duration)
+@interface NSString (NSInterval)
 
 /**
  *  Вывод продолжительности.
@@ -18,5 +18,9 @@
  *  @return [hh:]mm:ss
  */
 + (NSString *)textDuration:(NSTimeInterval)duration;
+
++ (NSString *)hours:(NSTimeInterval)duration;
+
++ (NSString *)minutes:(NSTimeInterval)duration;
 
 @end

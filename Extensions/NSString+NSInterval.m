@@ -1,14 +1,14 @@
 //
-//  NSString+Duration.m
+//  NSString+NSInterval.m
 //  ipPort
 //
 //  Created by Dmitriy Zadoroghniy on 02.02.15.
 //  Copyright (c) 2015 ipPort. All rights reserved.
 //
 
-#import "NSString+Duration.h"
+#import "NSString+NSInterval.h"
 
-@implementation NSString (Duration)
+@implementation NSString (NSInterval)
 
 + (NSString *)textDuration:(NSTimeInterval)duration {
     
@@ -25,6 +25,21 @@
     }
     
     return result;
+}
+
++ (NSString *)hours:(NSTimeInterval)duration {
+    div_t h = div(duration, 3600);
+    int hours = h.quot;
+    
+    return [NSString stringWithFormat:@"%d", hours];
+}
+
++ (NSString *)minutes:(NSTimeInterval)duration {
+    div_t h = div(duration, 3600);
+    div_t m = div(h.rem, 60);
+    int minutes = m.quot;
+    
+    return [NSString stringWithFormat:@"%d", minutes];
 }
 
 
