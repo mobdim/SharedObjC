@@ -53,16 +53,16 @@
     [RACObserve(self, networkStatus) subscribeNext:^(NSNumber *value) {
         switch (value.integerValue) {
             case ReachabilityStatusUnknown:
-                DDLogWarn(@"== ReachabilityStatusUnknown");
+                NSLog(@"== ReachabilityStatusUnknown");
                 break;
             case ReachabilityStatusNotReachable:
-                DDLogInfo(@"== ReachabilityStatusNotReachable");
+                NSLog(@"== ReachabilityStatusNotReachable");
                 break;
             case ReachabilityStatusReachableViaWWAN:
-                DDLogInfo(@"== ReachabilityStatusReachableViaWWAN");
+                NSLog(@"== ReachabilityStatusReachableViaWWAN");
                 break;
             case ReachabilityStatusReachableViaWiFi:
-                DDLogInfo(@"== ReachabilityStatusReachableViaWiFi");
+                NSLog(@"== ReachabilityStatusReachableViaWiFi");
                 break;
                 
             default:
@@ -75,12 +75,12 @@
 }
 
 + (NSString *)domainForReachability {
-    DDLogError(@"Пустой адрес для проверки статуса сети!!!");
+    NSLog(@"Пустой адрес для проверки статуса сети!!!");
     return nil;
 }
 
 + (NSString *)webServiceAddress {
-    DDLogError(@"Пустой адрес вебсервиса!!!");
+    NSLog(@"Пустой адрес вебсервиса!!!");
     return nil;
 }
 
