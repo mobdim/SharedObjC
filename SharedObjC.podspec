@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.subspec 'Extensions' do |ext|
-      ext.source_files = 'Extensions/*.{h,mm|m}'
+      ext.source_files = 'Extensions/*.{h,m}'
   end
 
   s.subspec 'Managers' do |man|
