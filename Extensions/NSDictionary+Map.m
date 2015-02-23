@@ -62,7 +62,7 @@
 }
 
 - (BOOL) mapTo:(id)objMap withPrefix:(NSString *)prefix {
-    DDLogVerbose(@">>> Map from dictionary to class.");
+    //DDLogVerbose(@">>> Map from dictionary to class.");
     
     __block BOOL finded = NO;
     
@@ -72,19 +72,19 @@
         }];
         if (finded) break;
         
-        DDLogVerbose(@"...try lowercase...");
+        //DDLogVerbose(@"...try lowercase...");
         [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             finded = [self decodeFieldValue:obj intoPropertyName:[key lowercaseString] toMap:objMap withPrefix:prefix];
         }];
         if (finded) break;
         
-        DDLogVerbose(@"...try uppercase...");
+        //DDLogVerbose(@"...try uppercase...");
         [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             finded = [self decodeFieldValue:obj intoPropertyName:[key uppercaseString] toMap:objMap withPrefix:prefix];
         }];
     } while (NO);
     
-    DDLogVerbose(@"<<< Map from dictionary to class.");
+    //DDLogVerbose(@"<<< Map from dictionary to class.");
     return finded;
 }
 
