@@ -17,9 +17,9 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.subspec 'Extensions' do |ext|
+      ext.dependency 'CocoaLumberjack'
       ext.source_files = 'Extensions/*.{h,m}'
       ext.osx.exclude_files = 'Extensions/UI*.{h,m}'
-      ext.dependency 'CocoaLumberjack'
   end
 
   s.subspec 'Managers' do |man|
