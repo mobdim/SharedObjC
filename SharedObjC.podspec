@@ -18,6 +18,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Extensions' do |ext|
       ext.source_files = 'Extensions/*.{h,m}'
+      ext.osx.exclude_files = 'Extensions/UIButton+UserInfo.{h,m}'
   end
 
   s.subspec 'Managers' do |man|
