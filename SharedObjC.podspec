@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '7.0'
   
   s.osx.exclude_files = 'Managers/NetworkManager.{h,m}'
+  s.osx.exclude_files = 'Extensions/UIButton+UserInfo.{h,m}'
 # Pod Dependencies
 
   s.dependency 'CocoaLumberjack'
