@@ -9,6 +9,15 @@
 #import "NSObject+AssociatedObject.h"
 #import <objc/runtime.h>
 
+#if !TARGET_OS_IPHONE
+@implementation NSValue (POP)
+
++ (NSValue *)valueWithCGRect:(CGRect)rect {
+    return [NSValue valueWithBytes:&rect objCType:@encode(CGRect)];
+}
+@end
+#endif
+
 @implementation NSObject (AssociatedObject)
 
 #pragma mark - CGRect
