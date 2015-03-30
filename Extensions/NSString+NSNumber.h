@@ -17,4 +17,6 @@
  */
 - (NSNumber *)number;
 
+- (NSNumber *)floatNumber;
+
 @end
