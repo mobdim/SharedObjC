@@ -13,6 +13,7 @@
 
 @property (assign, nonatomic) ReachabilityStatus networkStatus;
 @property (strong, nonatomic) AFNetworkReachabilityManager *reachabilityManager;
+@property (nonatomic, assign) BOOL isReachable;
 
 @end
 
@@ -47,6 +48,8 @@
                 self.networkStatus = ReachabilityStatusReachableViaWiFi;
                 break;
         };
+        
+        self.isReachable = self.networkStatus == ReachabilityStatusReachableViaWWAN || self.networkStatus == ReachabilityStatusReachableViaWiFi;
     }];
     
 #ifdef DEBUG
@@ -102,10 +105,6 @@
     }
     NSString *string = [NSString stringWithFormat:@"%@%@%@", self.webServiceAddress, prefix, s];
     return [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-}
-
-- (BOOL)isReachable {
-    return self.networkStatus == ReachabilityStatusReachableViaWWAN || self.networkStatus == ReachabilityStatusReachableViaWiFi;
 }
 
 @end

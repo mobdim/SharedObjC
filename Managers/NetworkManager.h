@@ -18,10 +18,10 @@ typedef NS_ENUM(NSInteger, ReachabilityStatus) {
 @interface NetworkManager : NSObject
 
 @property (assign, nonatomic, readonly) ReachabilityStatus networkStatus;
+@property (nonatomic, assign, readonly) BOOL isReachable;
 
 + (NSString *)webServiceAddress;
 + (NSURL *)urlWithServerAddress:(NSString *)s;
 + (NSString *)stringWithServerAddress:(NSString *)s;
-- (BOOL)isReachable;
 
 @end
