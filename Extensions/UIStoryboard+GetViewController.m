@@ -24,7 +24,7 @@
 //    
 //    id vc = [self instantiateViewControllerWithIdentifier:[svc stringWithLowerFirstLetter]];
 //    
-//    return vc;
+//    return vc
 //}
 
 - (id)getViewControllerByClass:(Class)cl {
@@ -42,10 +42,10 @@
 }
 
 - (id)viewControllerSwiftByClass:(Class)cl {
-    NSString * const removeBundleId = [NSString stringWithFormat:@"%@.", [NSBundle mainBundle].name];
-    NSString *svc = [NSStringFromClass(cl) stringByReplacingOccurrencesOfString:removeBundleId withString:@""];
+    NSString *stringClass = NSStringFromClass(cl);
+    NSArray *components = [stringClass componentsSeparatedByString:@"."];
     
-    id vc = [self instantiateViewControllerWithIdentifier:svc];
+    __strong id vc = [self instantiateViewControllerWithIdentifier:components.count > 1 ? components.lastObject : components.firstObject];
     
     return vc;
 }
