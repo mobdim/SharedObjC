@@ -30,5 +30,9 @@
     return NO;
 }
 
+- (BOOL)isEmpty {
+    return self.length == 0;
+}
+
 
 @end

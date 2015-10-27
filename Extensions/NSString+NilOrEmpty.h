@@ -14,4 +14,6 @@
 + (BOOL) isEmpty:(NSString *)string;
 + (BOOL) isNilOrEmpty:(NSString *)string;
 
+- (BOOL)isEmpty;
+
 @end
