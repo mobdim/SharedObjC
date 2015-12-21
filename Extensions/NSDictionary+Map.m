@@ -49,7 +49,8 @@
         //DDLogVerbose(@"***[%@] ignoring property \"%@\", no matching!", NSStringFromClass([objMap class]), prefixPropertyName);
     } else {
         if (class_getProperty([objMap class], prefixPropertyName.UTF8String)) {
-            [objMap setValue:[self unserializedRepresentationOfDatabaseValue:value forPropertyNamed:propertyName] forKeyPath:prefixPropertyName];
+            id unserialized_value = [self unserializedRepresentationOfDatabaseValue:value forPropertyNamed:propertyName];
+            [objMap setValue:unserialized_value forKeyPath:prefixPropertyName];
             result = YES;
         }
     }
