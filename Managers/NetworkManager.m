@@ -7,7 +7,6 @@
 //
 
 #import "NetworkManager.h"
-#import "RACAFNetworking.h"
 #import <AFNetworking/AFNetworking.h>
 
 @interface NetworkManager ()
