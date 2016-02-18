@@ -10,9 +10,9 @@
 
 @interface NSString (NilOrEmpty)
 
-+ (BOOL) isNil:(NSString *)string;
-+ (BOOL) isEmpty:(NSString *)string;
-+ (BOOL) isNilOrEmpty:(NSString *)string;
++ (BOOL) isNil:(nullable NSString *)string;
++ (BOOL) isEmpty:(nonnull NSString *)string;
++ (BOOL) isNilOrEmpty:(nullable NSString *)string;
 
 - (BOOL)isEmpty;
 
